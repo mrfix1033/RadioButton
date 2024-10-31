@@ -1,9 +1,18 @@
 <resources>
     <string name="app_name">RadioButton</string>
-    <string name="choose_color">Выберите цвет</string>
-    <string name="green">Зеленый</string>
-    <string name="blue">Синий</string>
-    <string name="red">Красный</string>
-    <string name="ordinary">По умолчанию</string>
-    <string name="change_color">Поменять цвет</string>
+    <string name="victorine_info">Викторина по истории\n\"Я историк\"</string>
+    <string name="lets_go">Поехали!</string>
+    <string name="next_question">Следующий вопрос</string>
+    <string name="get_answer">Узнать ответ</string>
+    <string name="correct">Правильно!</string>
+    <string name="incorrect">Неверно :(\nПравильный ответ: %s</string>
+    <string name="your_score">Твой счёт:</string>
+    <string name="score0">Что-то туговато у тебя с историей...</string>
+    <string name="score100">Хорошо было бы подучить историю...</string>
+    <string name="score00">Ну как бы океееей...</string>
+    <string name="score300">Ты можешь лучше!</string>
+    <string name="score400">Неплохо, молодец!</string>
+    <string name="score500">Идеально, ты прирождённый историк!</string>
+    <string name="scoreError">Ошибка! Некорректный счёт</string>
+    <string name="exit">Выход</string>
 </resources>

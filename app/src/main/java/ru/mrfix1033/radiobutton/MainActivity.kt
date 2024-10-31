@@ -4,8 +4,11 @@ import android.graphics.Color
 import android.os.Bundle
 import android.provider.MediaStore.Audio.Radio
 import android.view.View
+import android.widget.Button
 import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -13,32 +16,38 @@ import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var radioButtonDefault: RadioButton
-    private lateinit var radioButtonRed: RadioButton
-    private lateinit var radioButtonGreen: RadioButton
-    private lateinit var radioButtonBlue: RadioButton
+    private lateinit var radioGroup: RadioGroup
     private lateinit var textView: TextView
+    private lateinit var button: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        radioButtonDefault = findViewById(R.id.radioButtonDefault)
-        radioButtonRed = findViewById(R.id.radioButtonRed)
-        radioButtonGreen = findViewById(R.id.radioButtonGreen)
-        radioButtonBlue = findViewById(R.id.radioButtonBlue)
+        radioGroup = findViewById(R.id.radioGroup)
         textView = findViewById(R.id.textView)
+        button = findViewById(R.id.button)
 
-        radioButtonDefault.setOnClickListener(radioButtonOnClickListener)
-        radioButtonRed.setOnClickListener(radioButtonOnClickListener)
-        radioButtonGreen.setOnClickListener(radioButtonOnClickListener)
-        radioButtonBlue.setOnClickListener(radioButtonOnClickListener)
+        radioGroup.setOnCheckedChangeListener { group, checked -> changeColorAndNotify(checked) }
+        radioGroup.setOnClickListener {
+            notify("Промахнулся)")
+        }
+
+        button.setOnClickListener {
+            val checkedId = radioGroup.checkedRadioButtonId
+            if (checkedId == -1) {
+                notify("Ничего не выбрано")
+                return@setOnClickListener
+            }
+            changeColorAndNotify(checkedId)
+        }
+
+        textView.setOnClickListener {notify("Да не сюда")}
     }
 
-    private var radioButtonOnClickListener = View.OnClickListener { view ->
-        val radioButton = view as RadioButton
+    private fun changeColor(radioButtonId: Int) {
         textView.setBackgroundColor(
-            when (radioButton.id) {
+            when (radioButtonId) {
                 R.id.radioButtonDefault -> getColor(R.color.background)
                 R.id.radioButtonRed -> Color.RED
                 R.id.radioButtonGreen -> Color.GREEN
@@ -47,4 +56,12 @@ class MainActivity : AppCompatActivity() {
             }
         )
     }
+
+    private fun changeColorAndNotify(radioButtonId: Int) {
+        changeColor(radioButtonId)
+        val radio = findViewById<RadioButton>(radioButtonId)
+        notify("Цвет изменён на ${radio.text.toString().lowercase()}")
+    }
+
+    private fun notify(text: String) = Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
 }

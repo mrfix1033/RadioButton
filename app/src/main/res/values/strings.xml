@@ -5,4 +5,5 @@
     <string name="blue">Синий</string>
     <string name="red">Красный</string>
     <string name="ordinary">По умолчанию</string>
+    <string name="change_color">Поменять цвет</string>
 </resources>

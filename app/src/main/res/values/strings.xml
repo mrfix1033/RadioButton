@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">RadioButton</string>
+    <string name="choose_color">Выберите цвет</string>
+    <string name="green">Зеленый</string>
+    <string name="blue">Синий</string>
+    <string name="red">Красный</string>
+    <string name="ordinary">По умолчанию</string>
+</resources>
